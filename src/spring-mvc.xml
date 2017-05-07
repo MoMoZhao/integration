@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+			 xmlns:aop="http://www.springframework.org/schema/aop" 
+			 xmlns:context="http://www.springframework.org/schema/context" 
+			 xmlns:jdbc="http://www.springframework.org/schema/jdbc" 
+			 xmlns:jee="http://www.springframework.org/schema/jee" 
+			 xmlns:mvc="http://www.springframework.org/schema/mvc" 
+			 xmlns:tx="http://www.springframework.org/schema/tx" 
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			 xsi:schemaLocation="http://www.springframework.org/schema/beans 
+			 http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
+			 http://www.springframework.org/schema/context 
+			 http://www.springframework.org/schema/context/spring-context-4.2.xsd 
+			 http://www.springframework.org/schema/mvc 
+			 http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd 
+			 http://www.springframework.org/schema/jdbc 
+			 http://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd 
+			 http://www.springframework.org/schema/jee 
+			 http://www.springframework.org/schema/jee/spring-jee-4.2.xsd 
+			 http://www.springframework.org/schema/aop 
+			 http://www.springframework.org/schema/aop/spring-aop-4.2.xsd 
+			 http://www.springframework.org/schema/tx 
+			 http://www.springframework.org/schema/tx/spring-tx-4.2.xsd ">
+
+	<!-- 配置视图解析器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/> 
+		<!-- 使用前缀和后缀 -->
+		<property name="prefix" value="/WEB-INF/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<mvc:view-controller path="/index" view-name="goframe/mainFrame"/>
+	<mvc:view-controller path="/cust/addcust" view-name="goframe/addCust"/>
+	
+	<!-- 使用组件扫描的方式可一次扫描多个Controller -->
+	<context:component-scan base-package="com.acpms.ssm.controller"></context:component-scan>
+	
+	<!-- <mvc:annotation-driven/>相当于注册了DefaultAnnotationHandlerMapping
+		和AnnotationMethodHandlerAdapter两个bean，
+		配置一些messageconverter。即解决了@Controller注解的使用前提配置。 -->
+	<mvc:annotation-driven>
+		<!-- <mvc:message-converters>
+    		<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                  <property name="supportedMediaTypes">
+                     <list>
+                         <value>text/plain;charset=utf-8</value>
+                         <value>text/html;charset=UTF-8</value>
+                         <value>text/json;charset=UTF-8</value>
+                         <value>application/json;charset=utf-8</value>
+                     </list>
+                 </property>
+                 <property name="objectMapper">
+                     <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                         <property name="dateFormat">
+                             <bean class="java.text.SimpleDateFormat">
+                                 <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"/>
+                             </bean>
+                         </property>
+                     </bean>
+                 </property>
+             </bean>
+         </mvc:message-converters> -->
+	</mvc:annotation-driven>
+	
+	
+	<!-- 配置注解的处理器映射器和处理器适配器 -->
+	<!-- <mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven> -->
+	
+	<!-- <bean id="conversionService"
+		  class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+				日期类型绑定
+				<bean class="com.acpms.ssm.controller.converter.DateConverter"></bean>
+			</list>
+		</property>
+	</bean> -->
+	
+	 <!-- 访问静态资源文件 -->
+	<mvc:resources location="/common/" mapping="/common/**"></mvc:resources>
+	<mvc:resources location="/img/" mapping="/img/**"></mvc:resources>
+	
+	<!-- 定义拦截器 -->
+	<!-- <mvc:interceptors> -->
+		<!-- 直接定义拦截所有请求 -->
+		<!-- <bean class="com.acpms.ssm.interceptor.IdentityInterceptor"></bean> -->
+		
+		<!-- 也可定义拦截路径请求 -->
+		<!-- <mvc:interceptor> -->
+			<!-- 表示拦截所有路径的请求 包括子路径 -->
+			<!-- <mvc:mapping path="/**"/> -->
+			<!-- <bean class="com.acpms.ssm.interceptor.IdentityInterceptor"></bean> -->
+		<!-- </mvc:interceptor> -->
+	<!-- </mvc:interceptors> -->
+	
+	<!-- 定义全局异常处理器 -->
+    <!-- 只有一个全局异常处理器起作用 -->
+	<!-- <bean id="exceptionResolver"
+		  class="com.acpms.ssm.exception.OverallExceptionResolver">
+	</bean> -->
+
+</beans>

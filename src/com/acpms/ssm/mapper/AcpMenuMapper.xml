@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.acpms.ssm.dao.AcpMenuDao">
+  <!-- <insert id="insertUserTest"> -->
+  	<!-- insert into UserTest (id,name) values(#{userId},#{userName}) -->
+  <!-- </insert> -->
+  
+  <resultMap type="com.acpms.ssm.pojo.AcpMenu" id="AcpMenuResult">
+  	<result column="pk_id" property="id"/>
+  	<result column="parent_Id" property="parentId"/>
+  	<result column="menu_name" property="menuName"/>
+  	<result column="menu_url" property="menuUrl"/>
+  	<result column="rank" property="rank"/>
+  </resultMap>
+  
+  <select id="findAllMenu" resultMap="AcpMenuResult">
+  	select pk_id,parent_Id,menu_name,menu_url,rank from acp_menu order by rank
+  </select>
+</mapper>
