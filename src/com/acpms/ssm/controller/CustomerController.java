@@ -5,11 +5,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.acpms.ssm.pojo.CustInfo;
+import com.acpms.ssm.pojo.UserTest;
+
 @Controller
-@RequestMapping("/customer")
+@RequestMapping("/cust")
 public class CustomerController {
-	@RequestMapping("/newCust")
-	public String test(@PathVariable String p) {
+	@RequestMapping("/newCustomer")
+	public String test(CustInfo customer) {
 		return "customerManagement";
 	}
+	
 }
