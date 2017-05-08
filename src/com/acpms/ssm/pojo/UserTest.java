@@ -23,6 +23,8 @@ public class UserTest {
 		this.userName = userName;
 	}
 	
+	public UserTest(){ }
+	
 	@Override
 	public String toString() {
 		return "UserTest [userId=" + userId + ", userName=" + userName + "]";

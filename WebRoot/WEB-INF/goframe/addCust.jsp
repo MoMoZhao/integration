@@ -63,79 +63,85 @@
   <body style="background-color: #263238;">
     <div class="card price price-hosting price-card--500" style="margin: 120px;">
     	<div style="background-color: #F8F8F8;">
-    		<table class="table">
-			  <tbody >
-			    <tr>
-			      <td class="td_text"><label>客户名称:</label></td>
-			      <td><input type="text" class="form-control normal_form_control"></td>
-			      <td class="td_text"><label>组织机构代码证号:</label></td>
-			      <td><input type="text" class="form-control normal_form_control"></td>
-			    </tr>
-			    <tr>
-			      <td class="td_text"><label>法人代表:</label></td>
-			      <td><input type="text" class="form-control normal_form_control"></td>
-			      <td class="td_text"><label>成立日期:</label></td>
-			      <td>
-			      
-	<!-- 		      	<div class="input-group date"  id="datetimepicker" date-date data-date-format="dd MM yyyy"" > -->
-	<!-- 					<input type="text" class="form-control normal_form_control" value readonly> -->
-	<!-- 				    <span class="input-group-addon"> -->
-	<!-- 				        <span class="glyphicon glyphicon-calendar"></span> -->
-	<!-- 				    </span> -->
-	<!-- 				</div> -->
-					<div id="datetimepicker" class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-	                    <input class="form-control" type="text" value="" readonly>
-						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-	                </div>
-	<!-- 				<input type="hidden" id="dtp_input2" value="" /><br/> -->
-				  </td>
-			    </tr>
-			    <tr>
-			      <td class="td_text"><label>注册资本(元):</label></td>
-			      <td><input type="text" class="form-control normal_form_control"></td>
-			      <td class="td_text"><label>大写金额:</label></td>
-			      <td><input type="text" class="form-control normal_form_control"></td>
-			    </tr>
-			    <tr>
-			      <td class="td_text"><label>公司属性:</label></td>
-			      <td><input type="text" class="form-control normal_form_control"></td>
-			      <td class="td_text"><label>营业执照号:</label></td>
-			      <td><input type="text" class="form-control normal_form_control"></td>
-			    </tr>
-			    <tr>
-			      <td class="td_text"><label>金融许可证号:</label></td>
-			      <td><input type="text" class="form-control normal_form_control"></td>
-			      <td class="td_text"><label>批准文号:</label></td>
-			      <td><input type="text" class="form-control normal_form_control"></td>
-			    </tr>
-			    <tr>
-			      <td class="td_text"><label>注册地址:</label></td>
-			      <td colspan="3"><input type="text" class="form-control normal_form_control" width="100px"></td>
-			    </tr>
-			    <tr>
-			      <td class="td_text"><label>股东背景:</label></td>
-			      <td class="td_big_input" colspan="3"><textarea class="form-control"></textarea></td>
-			    </tr>
-			    <tr>
-			      <td class="td_text"><label>公司背景:</label></td>
-			      <td class="td_big_input" colspan="3"><textarea class="form-control"></textarea></td>
-			    </tr>	
-			    <tr height="50px;">
-			      <td></td>
-			      <td colspan="3">
-			      	<label>
-			      		<input type="checkbox">&nbsp;&nbsp;&nbsp;提交客户尽调报告
-			      	</label>
-			      </td>
-			    </tr>
-			    <tr height="50px;">
-			    	<td colspan="4" align="center">
-			    		<button type="button" onclick="" class="btn btn-warning" style="margin-right: 40px;">提交</button>
-			    		<button type="button" class="btn btn-danger" onclick="closed">取消</button>
-			    	</td>
-			    </tr>	    
-			  </tbody>
-	    	</table>
+    		<form class="form-horizontal" role="form" action="<%=request.getContextPath() %>/cust/newCustomer" id="myForm" method="post">
+    				<table class="table">
+				  <tbody >
+				    <tr>
+				      <td class="td_text"><label>客户名称:</label></td>
+<!-- 				      data-bv-notempty data-bv-notempty-message="验证码不能为空"  -->
+				      <td><input type="text" class="form-control normal_form_control" id="custName" name="name" required></td>
+				      <td class="td_text"><label>组织机构代码证号:</label></td>
+				      <td><input type="text" class="form-control normal_form_control" id="custNumber" name="organizationCode"></td>
+				    </tr>
+				    <tr>
+				      <td class="td_text"><label>法人代表:</label></td>
+				      <td><input type="text" class="form-control normal_form_control" name="legalPerson"></td>
+				      <td class="td_text"><label>成立日期:</label></td>
+				      <td>
+				      
+		<!-- 		      	<div class="input-group date"  id="datetimepicker" date-date data-date-format="dd MM yyyy"" > -->
+		<!-- 					<input type="text" class="form-control normal_form_control" value readonly> -->
+		<!-- 				    <span class="input-group-addon"> -->
+		<!-- 				        <span class="glyphicon glyphicon-calendar"></span> -->
+		<!-- 				    </span> -->
+		<!-- 				</div> -->
+						<div id="datetimepicker" class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+		                    <input class="form-control" type="text" value="" readonly name="foundDate">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div>
+		<!-- 				<input type="hidden" id="dtp_input2" value="" /><br/> -->
+					  </td>
+				    </tr>
+				    <tr>
+				      <td class="td_text"><label>注册资本(元):</label></td>
+				      <td><input type="text" class="form-control normal_form_control" name="registerCapital"></td>
+				      <td class="td_text"><label>大写金额:</label></td>
+				      <td><input type="text" class="form-control normal_form_control" name="formatCapital"></td>
+				    </tr>
+				    <tr>
+				      <td class="td_text"><label>公司属性:</label></td>
+				      <td><input type="text" class="form-control normal_form_control" name="propCode"></td>
+				      <td class="td_text"><label>营业执照号:</label></td>
+				      <td><input type="text" class="form-control normal_form_control" name="busLicence"></td>
+				    </tr>
+				    <tr>
+				      <td class="td_text"><label>金融许可证号:</label></td>
+				      <td><input type="text" class="form-control normal_form_control" name="finLicence"></td>
+				      <td class="td_text"><label>批准文号:</label></td>
+				      <td><input type="text" class="form-control normal_form_control" name="regNumber"></td>
+				    </tr>
+				    <tr>
+				      <td class="td_text"><label>注册地址:</label></td>
+				      <td colspan="3"><input type="text" class="form-control normal_form_control" width="100px" name="address"></td>
+				    </tr>
+				    <tr>
+				      <td class="td_text"><label>股东背景:</label></td>
+				      <td class="td_big_input" colspan="3"><textarea class="form-control" name="shareHolder"></textarea></td>
+				    </tr>
+				    <tr>
+				      <td class="td_text"><label>公司背景:</label></td>
+				      <td class="td_big_input" colspan="3"><textarea class="form-control" name="comProfile"></textarea></td>
+				    </tr>	
+				    <tr height="50px;">
+				      <td></td>
+				      <td colspan="3">
+				      	<label>
+				      		<input type="checkbox" onclick="commitCustReport();">&nbsp;&nbsp;&nbsp;提交客户尽调报告
+				      	</label>
+				      </td>
+				    </tr>
+				    <tr height="50px;">
+				    	<td colspan="4" align="center">
+				    		<button type="submit" class="btn btn-warning" style="margin-right: 40px;">提交</button>
+				    		<button type="button" class="btn btn-danger" onclick="closed">取消</button>
+				    		
+				    	</td>
+				    </tr>	    
+				  </tbody>
+		    	</table>
+    		</form>
+    			
+    		
     	</div>
     	
     </div>
@@ -152,6 +158,10 @@
 			minView: 2,
 			forceParse: 0
 	    });
+
+		function temp(){
+// 			$('#myForm').serialize()
+		}
 
     </script>
     
